@@ -1,0 +1,18 @@
+<h2>Statistiques</h2>
+
+<div>
+
+    {% include './stats.html' %}
+
+    <separator class="separator"></separator>
+
+    <div class="row space-between">
+        <h2>Historique</h2>
+        <button id="import" class="button row height-fit-content align-self-center import-hidden" onclick="importGame()" value="Importer">
+            <img src="/static/icons/import.png"/>
+            Importer
+        </button>
+    </div>
+
+    {% include './historic.html' %}
+</div>

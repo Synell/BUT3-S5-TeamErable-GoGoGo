@@ -8,120 +8,122 @@
         <link rel="shortcut icon" type="image/svg" href="{% static 'icons/favicon.svg' %}" >
         <link rel="stylesheet" href="/static/css/global.css">
         <link rel="stylesheet" href="/static/css/profil/profile.css">
+        <link rel="stylesheet" href="/static/css/profil/career.css">
+        <link rel="stylesheet" href="/static/css/profil/games_historic.css">
         <link rel="stylesheet" href="/static/css/signup.css">
     </head>
 
-<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-    {% include 'reusable/header.html' %}
-    {% include 'reusable/notify.html' %}
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        {% include 'reusable/header.html' %}
+        {% include 'reusable/notify.html' %}
 
-    <main>
-        {% csrf_token %}
+        <main>
+            {% csrf_token %}
 
-        <div class="container align-row no-padding">
-            <div class="sidebar">
-                <div class="sidebar-item">
-                    <a href="#" activate="#info" class="sidebar-link active">Profil Public</a>
+            <div class="container align-row no-padding">
+                <div class="sidebar">
+                    <div class="sidebar-item">
+                        <a href="#" activate="#info" class="sidebar-link active">Profil Public</a>
+                    </div>
+                    <div class="sidebar-item">
+                        <a href="#" activate="#security" class="sidebar-link">Sécurité</a>
+                    </div>
+                    <div class="sidebar-item">
+                        <a href="#" activate="#friends" class="sidebar-link">Amis</a>
+                    </div>
+                    <div class="sidebar-item">
+                        <a href="#" activate="#stats" class="sidebar-link">Carrière</a>
+                    </div>
                 </div>
-                <div class="sidebar-item">
-                    <a href="#" activate="#security" class="sidebar-link">Sécurité</a>
-                </div>
-                <div class="sidebar-item">
-                    <a href="#" activate="#friends" class="sidebar-link">Amis</a>
-                </div>
-                <!-- <div class="sidebar-item">
-                    <a href="#" activate="#stats" class="sidebar-link">Statistiques</a>
-                </div> -->
-            </div>
 
-            <div class="content">
-                <section id="info" class="active">
-                    <h2>Profil Public</h2>
-                    <div class="row dynamic-row-reverse no-spacing">
-                        <form id="change-user-info">
+                <div class="content">
+                    <section id="info" class="active">
+                        <h2>Profil Public</h2>
+                        <div class="row dynamic-row-reverse no-spacing">
+                            <form id="change-user-info">
+                                <div class="form-control">
+                                    <label for="username">Nom d'utilisateur</label>
+                                    <input type="text" name="username" id="username" value="{{ user.username }}" required>
+                                </div>
+                                <div class="form-control">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" value="{{ user.email }}" required>
+                                </div>
+
+                                <div class="separator"></div>
+
+                                <div class="form-control">
+                                    <input type="submit" value="Enregistrer">
+                                </div>
+                            </form>
+
+                            <div class="center">
+                                <div class="avatar-wrapper" id="pfp">
+                                    <img class="profile-pic" src="/header-pfp" />
+                                    <div class="upload-button"></div>
+                                    <input class="file-upload" type="file" accept="image/*" hidden />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="security">
+                        <h2>Sécurité</h2>
+                        <form id="change-pwd">
                             <div class="form-control">
-                                <label for="username">Nom d'utilisateur</label>
-                                <input type="text" name="username" id="username" value="{{ user.username }}" required>
+                                <label for="old-pwd">Ancien mot de passe</label>
+                                <input type="password" name="old-pwd" id="old-pwd" required>
+                            </div>
+                            <div class="form-control" id="password_input">
+                                <div>
+                                    <label for="new-pwd">Nouveau mot de passe</label>
+                                    <input type="password" name="new-pwd" id="new-pwd" required>
+                                </div>
+                                <div class="tooltip">
+                                    <img src="static/icons/tooltip.png" class="tooltip_icon">
+                                    <span class="tooltiptext">Votre mot de passe doit contenir au moins 8 caractères.</span>
+                                </div>
                             </div>
                             <div class="form-control">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" value="{{ user.email }}" required>
+                                <label for="new-pwd-confirm">Confirmer le nouveau mot de passe</label>
+                                <input type="password" name="new-pwd-confirm" id="new-pwd-confirm" required>
                             </div>
-
                             <div class="separator"></div>
-
                             <div class="form-control">
                                 <input type="submit" value="Enregistrer">
                             </div>
                         </form>
 
-                        <div class="center">
-                            <div class="avatar-wrapper" id="pfp">
-                                <img class="profile-pic" src="/header-pfp" />
-                                <div class="upload-button"></div>
-                                <input class="file-upload" type="file" accept="image/*" hidden/>
+                        <h2>Supprimer mon compte</h2>
+                        <form id="delete-account">
+                            <div class="form-control">
+                                <label for="password">Pour supprimer votre compte, veuillez entrer votre mot de passe</label>
+                                <input type="password" name="password" id="password" required>
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="security">
-                    <h2>Sécurité</h2>
-                    <form id="change-pwd">
-                        <div class="form-control">
-                            <label for="old-pwd">Ancien mot de passe</label>
-                            <input type="password" name="old-pwd" id="old-pwd" required>
-                        </div>
-                        <div class="form-control" id="password_input">
-                            <div>
-                                <label for="new-pwd">Nouveau mot de passe</label>
-                                <input type="password" name="new-pwd" id="new-pwd" required>
+                            <div class="separator"></div>
+                            <div class="form-control">
+                                <input type="submit" value="Supprimer mon compte">
                             </div>
-                            <div class="tooltip">
-                                <img src="static/icons/tooltip.png" class="tooltip_icon">
-                                <span class="tooltiptext">Votre mot de passe doit contenir au moins 8 caractères.</span>
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <label for="new-pwd-confirm">Confirmer le nouveau mot de passe</label>
-                            <input type="password" name="new-pwd-confirm" id="new-pwd-confirm" required>
-                        </div>
-                        <div class="separator"></div>
-                        <div class="form-control">
-                            <input type="submit" value="Enregistrer">
-                        </div>
-                    </form>
+                        </form>
+                    </section>
 
-                    <h2>Supprimer mon compte</h2>
-                    <form id="delete-account">
+                    <section id="friends">
+                        <h2>Amis</h2>
                         <div class="form-control">
-                            <label for="password">Pour supprimer votre compte, veuillez entrer votre mot de passe</label>
-                            <input type="password" name="password" id="password" required>
+                            <input type="text" id="search-input" placeholder="Rechercher un ami">
+                            <div id="user-datalist"></div>
                         </div>
-                        <div class="separator"></div>
-                        <div class="form-control">
-                            <input type="submit" value="Supprimer mon compte">
-                        </div>
-                    </form>
-                </section>
+                        <div id="friends-list" hx-get="/friend-list" hx-swap="innerHTML" hx-trigger="load"></div>
+                    </section>
 
-                <section id="friends">
-                    <h2>Amis</h2>
-                    <div class="form-control">
-                        <input type="text" id="search-input" placeholder="Rechercher un ami">
-                        <div id="user-datalist"></div>
-                    </div>
-                    <div id="friends-list" hx-get="/friend-list" hx-swap="innerHTML" hx-trigger="load"></div>
-                </section>
-
-                {% comment %} <section id="stats">
-                    <h2>Statistiques</h2>
-                </section> {% endcomment %}
+                    <section id="stats" hx-get="/career" hx-swap="innerHTML" hx-trigger="load">
+                    </section>
+                </div>
             </div>
-        </div>
-    </main>
-
-    <script src="/static/js//profil/profile.js"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
-</body>
+        </main>
+        <script src="/static/js/sidebar-link.js"></script>
+        <script src="/static/js//profil/profile.js"></script>
+        <script src="/static/js//profil/career.js"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    </body>
 </html>

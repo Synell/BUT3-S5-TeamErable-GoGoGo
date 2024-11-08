@@ -5,6 +5,7 @@ from .GoConstants import GoConstants
 import math
 
 class Grid:
+    '''Grille de jeu.'''
     def __init__(self, size: int) -> None:
         '''Initialise une grille de taille spécifiée.
 
@@ -17,18 +18,26 @@ class Grid:
 
     @property
     def size(self) -> Vector2:
+        '''Renvoie la taille de la grille.'''
         return self._size
 
     @property
     def width(self) -> int:
+        '''Renvoie la largeur de la grille.'''
         return self._size.x
 
     @property
     def height(self) -> int:
+        '''Renvoie la hauteur de la grille.'''
         return self._size.y
 
     @property
     def raw(self) -> list[list[Tile | None]]:
+        '''Renvoie la grille sous forme de liste de liste de couleurs.
+        
+        Returns:
+            list[list[Tile | None]]: Grille sous forme de liste de liste de couleurs.
+        '''
         l: list[list[Tile | None]] = []
 
         for y in range(self.size.y):
@@ -41,12 +50,26 @@ class Grid:
 
 
     def __iter__(self) -> iter:
+        '''Renvoie un itérateur sur la grille.'''
         return iter(self._grid)
 
     def __getitem__(self, index: int) -> list[Tile | None]:
+        '''Renvoie la liste de tuiles de la ligne d'index spécifié.
+        
+        Args:
+            index (int): Index de la ligne.
+
+        Returns:
+            list[Tile | None]: Liste de tuiles de la ligne.
+        '''
         return self._grid[index]
 
     def __str__(self) -> str:
+        '''Renvoie la grille sous forme de chaine de caractères.
+        
+        Returns:
+            str: Grille sous forme de chaine de caractères.
+        '''
         s = '╔' + '═' * (self.size.x * 3) + '╗\n'
         for y in range(self.size.y):
             s += '║'
@@ -56,6 +79,7 @@ class Grid:
         return s + '╚' + '═' * (self.size.x * 3) + '╝'
     
     def __repr__(self) -> str:
+        '''Surcharge de l'opérateur str.'''
         return str(self)
 
 
@@ -90,6 +114,14 @@ class Grid:
 
 
     def is_outside(self, coords: Vector2) -> bool:
+        '''Vérifie si les coordonnées sont en dehors du plateau.
+
+        Args:
+            coords (Vector2): Coordonnées.
+
+        Returns:
+            bool: True si les coordonnées sont en dehors du plateau, False sinon.
+        '''
         return coords.x < 0 or coords.x >= self.size.x or coords.y < 0 or coords.y >= self.size.y
 
 
@@ -112,7 +144,7 @@ class Grid:
         '''Crée une grille à partir d'une liste de listes.
 
         Args:
-            grid (list[list[Tile  |  None]]): Liste de listes.
+            grid (list[list[Tile | None]]): Liste de listes.
 
         Returns:
             Grid: Grille.
@@ -245,7 +277,7 @@ class Grid:
         for island in self.get_islands():
             if island.tile == tile and coords in island.coords:
                 return island
-            
+
         return None
 
 
@@ -472,6 +504,13 @@ class Grid:
                 for this_territory in territories[tile].copy():
                     if other_territory.contains(this_territory) and other_territory in territories[tile.next]:
                         territories[tile.next].remove(other_territory)
+
+        for tile in Tile:
+            for other_territory in territories[tile.next].copy():
+                for this_territory in territories[tile].copy():
+                    if other_territory.overlaps(this_territory):
+                        if other_territory in territories[tile.next]: territories[tile.next].remove(other_territory)
+                        if this_territory in territories[tile]: territories[tile].remove(this_territory)
 
         return {tile: tuple(territories[tile]) for tile in Tile}
 

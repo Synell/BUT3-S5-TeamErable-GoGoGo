@@ -1,0 +1,152 @@
+/* Styles pour les boutons de la barre de navigation */
+.navbar-select {
+    margin-top: 25px;
+    margin-left: 25px;
+    display: inline-flex;
+    position: absolute;
+    top: 5em;
+    right: 5em;
+}
+
+.navbar-link {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 5em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.navbar-link:hover {
+    background-color: #cc7f4e;
+    color: #fff;
+}
+
+.navbar-link.active {
+    background-color: #cc7f4e;
+    color: #fff;
+}
+
+section {
+    transition: all 0.2s ease;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+section.active {
+    opacity: 1;
+    height: auto;
+    min-height: 50%;
+}
+
+/*Table*/
+.content {
+    margin-top: 4em;
+}
+
+
+
+h1{
+    margin-left: 4em;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 7em;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+td a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+td a img {
+    margin-right: 0.5rem;
+}
+
+th {
+    background-color: #cc7f4e;
+}
+
+th
+
+tr:nth-child(1) td:nth-child(1){
+    color: gold;
+}
+
+tr:nth-child(2) td:nth-child(1) p{
+    background-color: silver;
+}
+
+tr:nth-child(3) td:nth-child(1) p{
+    background-color: burlywood;
+}
+
+#current {
+    background-color: #f5b38b;
+}
+
+td:nth-child(1), th:nth-child(1), td:nth-child(2), th:nth-child(2) {
+    width: 1%;
+}
+td:nth-child(6), th:nth-child(6),
+td:nth-child(7), th:nth-child(7), td:nth-child(8), th:nth-child(8), td:nth-child(9), th:nth-child(9) {
+    width: 10%;
+}
+
+td .pfp {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-select {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px 0;
+    }
+
+    .navbar-link {
+        width: auto;
+        height: auto;
+        margin: 0 5px 10px 5px;
+    }
+
+    .content{
+        margin-top: 0em;
+    }
+
+    h1 {
+        margin-left: 0;
+    }
+
+    td, th {
+        width: auto;
+    }
+
+
+    td:nth-child(5), th:nth-child(5),
+    td:nth-child(6), th:nth-child(6),
+    td:nth-child(7), th:nth-child(7),
+    td:nth-child(8), th:nth-child(8) {
+        display: none;
+    }
+}

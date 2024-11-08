@@ -19,6 +19,7 @@
         <input type="text" id="player-color" value="{{ color }}" hidden>
         <input type="text" id="game-ended" value="{{ game_ended }}" hidden>
         <input type="text" id="has-second-player" value="{{ has_second_player }}" hidden>
+        <input type="text" id="game-paused" value="{{ game_paused }}" hidden>
 
         <div class="band transition hidden" id="band-win">
             <div class="center flex-column">
@@ -31,15 +32,33 @@
             </div>
         </div>
 
-        <div class="band transition hidden" id="band-pause">
+        <div class="band transition {% if game_paused != 1 %}hidden{% endif %}" id="band-pause">
             <div class="center flex-column">
                 <div>
                     <div class="center flex-column">
                         <p class="big" id="band-pause-big-text">Partie en pause</p>
-                        <div class="row">
-                            <button class="big secondary" id="unpause-button">Reprendre la partie</button>
-                            <div class="separator"></div>
-                            <p><span id="band-pause-count">0</span> / 2</p>
+                        <div class="column">
+                            <p>Vous pourrez reprendre la partie dans <span id="span-resume-timer">{{ resume_timer }}</span></p>
+                            <div class="center height-auto">
+                                <button class="big secondary {% if resume_timer != '00:00:00' %}hidden{% endif %}" id="resume-button">Reprendre la partie</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="band transition {% if game_paused != 2 %}hidden{% endif %}" id="band-start">
+            <div class="center flex-column">
+                <div>
+                    <div class="center flex-column">
+                        <p class="big" id="band-start-big-text">Partie en attente de commencement</p>
+                        <div class="column">
+                            <p>Vous pourrez commencer la partie dans <span id="span-start-timer">{{ resume_timer }}</span></p>
+                            <div class="center height-auto {% if resume_timer != '00:00:00' %}hidden{% endif %}" id="start-div">
+                                <button class="big secondary" id="start-button">Commencer la partie</button>
+                                <p id="start-count" class="no-margin"><span id="span-start-count">{{ start_count }}</span> / 2</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +88,7 @@
             <div class="mobile-separator"></div>
     
             <div>
-                <div class="overflow-auto-x">
+                <div class="overflow-auto-x margin-bottom">
                     <div class="width-max-content margin-auto-x">
                         <table class="board {{ can_play }}" cellspacing="0">
                             {% for row in board %}
@@ -86,16 +105,20 @@
                         </table>
                     </div>
                 </div>
-        
-                <div class="center transition {{ action_buttons_class }}" id="action-buttons">
-                    <div class="row width-fit-content">
-                        <button class="margin-side" id="skip-button">Passer le Tour</button>
-                        <button class="margin-side" id="give-up-button">Déclarer Forfait</button>
-                        <!-- <div class="margin-side row">
-                            <button id="pause-button">Mettre en pause</button>
-                            <p id="pause-count" class="no-margin">0 / 2</p>
-                        </div> --> <!-- TODO: Ajouter la pause au Sprint 5 -->
+
+                <div class="center row">
+                    <div class="center transition {{ action_buttons_class }}" id="action-buttons">
+                        <div class="row width-fit-content">
+                            <button class="margin-side" id="skip-button">Passer le Tour</button>
+                            <button class="margin-side" id="give-up-button">Déclarer Forfait</button>
+                        </div>
                     </div>
+                    {% if not hide_pause %}
+                    <div class="margin-side row">
+                        <button id="pause-button">Mettre en pause</button>
+                        <p id="pause-count" class="no-margin"><span id="span-pause-count">{{ pause_count }}</span> / 2</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

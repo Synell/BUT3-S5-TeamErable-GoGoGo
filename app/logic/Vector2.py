@@ -14,18 +14,30 @@ class Vector2:
 
     @property
     def x(self) -> int:
+        '''Renvoie la coordonnée x.'''
         return self._x
 
     @x.setter
     def x(self, value: int) -> None:
+        '''Modifie la coordonnée x.
+
+        Args:
+            value (int): Nouvelle coordonnée x.
+        '''
         self._x = value
 
     @property
     def y(self) -> int:
+        '''Renvoie la coordonnée y.'''
         return self._y
 
     @y.setter
     def y(self, value: int) -> None:
+        '''Modifie la coordonnée y.
+
+        Args:
+            value (int): Nouvelle coordonnée y.
+        '''
         self._y = value
 
 
@@ -52,9 +64,11 @@ class Vector2:
         return Vector2(self._x - other._x, self._y - other._y)
 
     def __str__(self) -> str:
+        '''Surcharge de str.'''
         return f'Vector2({self._x}, {self._y})'
 
     def __repr__(self) -> str:
+        '''Surcharge de repr.'''
         return str(self)
 
     def __eq__(self, __value: object) -> bool:

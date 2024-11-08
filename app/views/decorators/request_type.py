@@ -1,5 +1,4 @@
 from django.http import HttpRequest, HttpResponseBadRequest
-from functools import wraps
 from typing import Callable
 from enum import StrEnum
 

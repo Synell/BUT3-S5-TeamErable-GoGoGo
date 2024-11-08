@@ -31,10 +31,13 @@
                             <switchbutton name="game-private" id="game-private"></switchbutton>
                         </div>
                         <div class="form-control">
+                            <label for="game-ranked">Classée ?</label>
+                            <switchbutton name="game-ranked" id="game-ranked"></switchbutton>
+                        </div>
+                        <div class="form-control">
                             <label for="map-size">Taille de la carte</label>
                             <select name="map-size" id="map-size">
                                 <option value="9">9x9</option>
-                                <option value="11">11x11</option>
                                 <option value="13">13x13</option>
                                 <option value="19">19x19</option>
                             </select>
@@ -70,7 +73,7 @@
                             <switchbutton name="game-is-handicap" id="game-is-handicap" onclick="toggleHandicap()"></switchbutton>
                         <div id="handicap-form" class="form-control" hidden>
                             <label for="handicap">Handicap</label>
-                            <input type="number" name="handicap" id="handicap" min="0" max="9" value="0" placeholder="Handicap">
+                            <input type="number" name="handicap" id="handicap" min="0" max="4" value="0" placeholder="Handicap">
                         </div>
                         
                     <div class="separator"></div>

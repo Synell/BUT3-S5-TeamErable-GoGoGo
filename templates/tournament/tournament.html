@@ -21,38 +21,34 @@
                     <img src="/header-pfp" alt="Icone de profil" />
                     <h3 hx-get="/header-profile-name" hx-swap="innerHTML" hx-trigger="load">Username</h3>
                 </div>
-                <div class="tournois-container">
-                    <p>999 Defaites</p>
-                    <p>0 Victoires</p>
-                    <p>3 Tournois</p>
-                </div>
-                <div class="tournois-container">
-                    <p>100%</p>
-                    <p>0%</p>
-                    <p>3 Tournois</p>
-                </div>
+                
+                <section id="stats" hx-get="/stats" hx-swap="innerHTML" hx-trigger="load">
+                </section>
+
             </div>
 
-            <a href="/profile" class="button height-fit-content">Consulter mon profil</a>
+            <a id="profile-link" href="/profile" class="button height-fit-content">Consulter mon profil</a>
         </section>
 
         <div class="table-section">
             {% csrf_token %}
             <div class="container" id="tournament">
                 <h2>Tounois en cours</h2>
-                <table id="tournament-table">
-                    <thead>
-                        <tr>
-                            <th>Nom du tournoi</th>
-                            <th>Créateur</th>
-                            <th>Date de début</th>
-                            <th>Date de fin</th>
-                            <th>Nombre de joueurs minimum</th>
-                            <th></th>
-                    </thead>
-                    <tbody id="current-tourament-list" hx-post="/search-current-tournament" hx-swap="innerHTML" hx-trigger="load">
-                    </tbody>
-                </table>
+                <div>
+                    <table id="tournament-table">
+                        <thead>
+                            <tr>
+                                <th>Nom du tournoi</th>
+                                <th>Créateur</th>
+                                <th>Date de début</th>
+                                <th>Date de fin</th>
+                                <th>Nombre de joueurs minimum</th>
+                                <th></th>
+                        </thead>
+                        <tbody id="current-tourament-list" hx-post="/search-current-tournament" hx-swap="innerHTML" hx-trigger="load">
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
         </div>
@@ -82,27 +78,24 @@
                 </div>
                 <div class="form-control">
                     <h3>Par nom</h3>
-                    <input type="text" id="search-input" placeholder="Rechercher de tournoi">
+                    <input type="text" id="search-input" placeholder="Rechercher un tournoi">
                     <div id="user-datalist"></div>
                 </div>
-                <table id="tournament-table">
-                    <!-- {% if not tournaments %}
-                    <div class="row">
-                        <p>Aucun tournoi n'est disponible pour le moment ou correspond à vos critères de recherche.</p>
-                    </div> 
-                    {% endif %} -->
-                    <thead>
-                        <tr>
-                            <th>Nom du tournoi</th>
-                            <th>Créateur</th>
-                            <th>Date de début</th>
-                            <th>Date de fin</th>
-                            <th>Nombre de joueurs minimum</th>
-                            <th></th>
-                    </thead>
-                    <tbody id="tournament-list" hx-post="/search-tournament" hx-swap="innerHTML" hx-trigger="load" hx-target="#tournament-list">
-                    </tbody>
-                </table>
+                <div>
+                    <table id="tournament-table">
+                        <thead>
+                            <tr>
+                                <th>Nom du tournoi</th>
+                                <th>Créateur</th>
+                                <th>Date de début</th>
+                                <th>Date de fin</th>
+                                <th>Nombre de joueurs minimum</th>
+                                <th></th>
+                        </thead>
+                        <tbody id="tournament-list" hx-post="/search-tournament" hx-swap="innerHTML" hx-trigger="load" hx-target="#tournament-list">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>

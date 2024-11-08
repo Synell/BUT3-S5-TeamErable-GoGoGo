@@ -1,13 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, HttpResponseBadRequest
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.password_validation import validate_password
+from django.http import HttpResponse, HttpRequest
 from django.db.models import Q
-from ...models import Game
-from ...models.game_configuration import GameConfiguration
-from ...models.game_participate import GameParticipate
+from ...models import Game, GameParticipate, GameConfiguration
 from ..decorators import login_required, request_type, RequestType
-from ...http import HttpResponseNotifError, HttpResponseNotifSuccess
 
 @login_required
 @request_type(RequestType.GET)

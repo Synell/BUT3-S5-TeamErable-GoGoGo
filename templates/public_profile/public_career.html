@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GoGoGo • Carrière Publique</title>
+        <link rel="shortcut icon" type="image/svg" href="{% static 'icons/favicon.svg' %}" >
+        <link rel="stylesheet" href="/static/css/profil/public_career.css">
+        <link rel="stylesheet" href="/static/css/profil/career.css">
+        <link rel="stylesheet" href="/static/css/global.css">
+
+
+    </head>
+
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        {% include 'reusable/header.html' %}
+        {% include 'reusable/notify.html' %}
+
+        <main>
+            {% csrf_token %}
+            <section class="upper-section">
+                <div class="career-header-section">
+                    
+                    <div class="career-container">
+                        <img src="/get-pfp?id={{ user.id }}" alt="Icone de profil"/>
+                        <h3>{{ user.username }}</h3>
+                    </div>
+
+                    <div class="stats-public-career">
+                        {% include 'profile/stats.html' %}
+                    </div>
+
+                </div>
+            </section>
+
+            {% include 'profile/historic.html' %}
+        </main>
+        <script src="/static/js//profil/career.js"></script>
+
+    </body>
+</html>

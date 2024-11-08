@@ -1,0 +1,27 @@
+<div class="historics">
+    <div class="search-games-historic form-control">
+        <div id="user-gamelist"></div>
+    </div>
+
+    <div class="games-list">
+        <table id="games-historic-table">
+            <thead>
+                <tr>
+                    <th>Nom de la partie</th>
+                    <th>Joueurs</th>
+                    <th>Score</th>
+                    <th>Durée</th>
+                    <th>Taille du Goban</th>
+                    <th>Méthode de comptage</th>
+                    <th>Type d'horloge</th>
+                    <th>Komi</th>
+                    <th>Handicap</th>
+                    <th>Nom du tournoi</th>
+                    <th></th>
+            </thead>
+            <tbody id="games-historic-list" hx-post="/search-games-historic/{{ user.id }}/" hx-swap="innerHTML" hx-trigger="load, reload from:body">
+            </tbody>
+        </table>
+
+    </div>
+</div>

@@ -1,3 +1,4 @@
+htmx.config.useTemplateFragments = true;
 document.querySelector("#search-input").addEventListener('keyup', function(event) {
     var formData = new FormData();
     formData.append('game_name', event.target.value);

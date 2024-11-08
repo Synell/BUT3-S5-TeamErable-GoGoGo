@@ -1,5 +1,4 @@
-from django.test import TestCase, Client
-from ...models.custom_user import CustomUser
+from django.test import TestCase
 
 class SignUpTestCase(TestCase):
 	'''Classe permettant de tester la creation d'un utilisateur'''

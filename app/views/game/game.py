@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, HttpResponseBadRequest
 from app.models import Game
-from ...logic import Board, Tile, RuleFactory
-import json
+from ...logic import Board, Tile
 from ..decorators import login_required, request_type, RequestType
 from ...http import HttpResponseNotifError
 from ...storage import GameStorage
 from ...models import CustomUser
 from ...utils import time2str
+from datetime import timedelta
 
 @login_required
 @request_type(RequestType.GET)
@@ -92,6 +92,7 @@ def game_view_players(request: HttpRequest, game: Game, board: Board, players: l
         request (HttpRequest): Requête HTTP
         game (Game): La partie
         board (Board): Le plateau
+        players (list[CustomUser]): La liste des joueurs
 
     Returns:
         tuple[str, str]: Le HTML des joueurs
@@ -141,8 +142,6 @@ def game_view(request: HttpRequest, game: Game) -> HttpResponse:
     Returns:
         HttpResponse: La réponse HTTP à la requête de la partie
     '''
-
-
     board = GameStorage.load_game(game.move_list.path)
     tile = Tile.White if request.user == game.game_participate.player1 else Tile.Black
     can_play = board.is_player_turn(tile)
@@ -185,6 +184,11 @@ def game_view(request: HttpRequest, game: Game) -> HttpResponse:
             'player2_html': player2_html,
             'code': game.code,
             'action_buttons_class': '' if can_play and not board.ended else 'hidden',
+            'game_paused': board.is_paused.value,
+            'pause_count': board.pause_count,
+            'start_count': board.resume_count,
+            'resume_timer': time2str(board.pause_time_left),
+            'hide_pause': game.game_configuration.ranked or (game.tournament is not None),
         }
     )
 

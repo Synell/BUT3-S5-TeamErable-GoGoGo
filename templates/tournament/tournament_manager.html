@@ -17,7 +17,7 @@
         <section class="description-section">
             <div class="row space-between">
                 <a href="/tournament" class="button gray">🔙 Retour</a>
-                {% if tournament_unstarted == true %}
+                {% if show_buttons %}
                 <div class="row">
                     <a href="/edit-tournament/{{ tournament.id }}/" class="button row"><img src="/static/icons/edit.png">Modifier le tournoi</a>
                     <div class="separator"></div>
@@ -26,24 +26,27 @@
                 {% endif %}
             </div>
             <div class="separator"></div>
-            <div class="row space-between">
+            <div class="row mobile-flex-direction space-between">
                 <h2>{{ tournament.name }}</h2>
-                {% if not tournament.ongoing or in_tournament %}
+                <div class="row">
+                    {% if not has_started_in_theory or in_tournament %}
                     {% if in_tournament %}
-                        <button class="button height-fit-content" disabled>Vous participez au tournoi</button>
+                    <button class="button height-fit-content" disabled>Vous participez au tournoi</button>
                     {% else %}
-                        <a hx-get="/tournament-join/{{ tournament.id }}/" hx-trigger="click" hx-swap="replace" hx-target="" hx-indicator="true" class="button row height-fit-content">
-                            <img src="/static/icons/joingame.png">
-                            Rejoindre le tournoi
-                        </a>
+                    <a hx-get="/tournament-join/{{ tournament.id }}/" hx-trigger="click" hx-swap="replace" hx-target="" hx-indicator="true" class="button row height-fit-content">
+                        <img src="/static/icons/joingame.png">
+                        Rejoindre le tournoi
+                    </a>
                     {% endif %}
-                {% endif %}
+                    {% endif %}
+                    <a href="/classement-tournament/{{ tournament.id }}/" class="button row height-fit-content"><img src="/static/icons/voir.png">Voir le classement</a>
+                </div>
             </div>
 
             <p id="desc">
                 {{ tournament.description }}
             </p>
-            <div id="informations">
+            <div id="informations" class="row mobile-flex-direction">
                 <div class="form-control">
                     <label for="tournament-date-start">Date de début</label>
                     <input type="date" id="tournament-date-start" name="tournament-date-start" value="{{ tournament.start_date|date:'Y-m-d' }}" disabled>
@@ -54,9 +57,12 @@
                 </div>
                 <div>
                     <h3>Organisateur</h3>
-                    <div class="row profile">
-                        <img src="/header-pfp" alt="Icône de profil" class="pfp" />
-                        <p>{{organisator.username}}</p>
+                    <div>
+                        <h4 class="no-margin">{{organisator}}</h4>
+                        <div class="row profile">
+                            <img src="/get-pfp?id={{ creator.id }}" alt="Icône de profil" class="pfp" />
+                            <p>{{creator.username}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,20 +71,8 @@
                 <div id="players-list" class="container" hx-get="/tournament-player-list?id={{ tournament.id }}" hx-swap="innerHTML" hx-trigger="load"></div>
             </div>
         </section>
-        <section id="arbre-section">
-            <div class="tournament-tree row">
-                {% for match_round in tree %}
-                    <div class="column">
-                        <div class="tour-label">Tour {{ forloop.counter }}</div>
-                        {% for match in match_round %}
-                            <div class="match">
-                                <div class="team{% if match.2 == 0 %} winner{% endif %}">{{ match.0.username }}</div>
-                                <div class="team{% if match.2 == 1 %} winner{% endif %}">{{ match.1.username }}</div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-            </div>
+        <section id="tree-section">
+            {{ tree | safe }}
         </section>
     </main>
     {% include 'reusable/footer.html' %}

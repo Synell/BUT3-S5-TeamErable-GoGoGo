@@ -32,6 +32,11 @@ var check = function() {
     checkLength();
 }
 
+/**
+ * Fonction de validation du formulaire
+ * 
+ * @returns {boolean} Renvoie si le formulaire est valide
+ */
 function validateForm() {
     if (!checkLength()) {
         notify('<p class="error">Le mot de passe doit être de 8 caractères minimum.</p>');

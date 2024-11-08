@@ -9,6 +9,7 @@ class Tile(Enum):
 
 
     def __str__(self) -> str:
+        '''Surchage de la méthode str'''
         return str(self.value)
 
 

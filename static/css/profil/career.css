@@ -1,0 +1,111 @@
+.statistics{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.statistics div p{
+    border-top: 1px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+    padding: 0.5rem 0;
+    border-left: 1px solid var(--main-color);
+    border-right: 1px solid var(--main-color);
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.statistics div:first-child p{
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.statistics div:last-child p{
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+
+.search-games-historic{
+    margin-bottom: 1rem;
+}
+
+#games-historic-table {
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0 0.25rem;
+    width: -webkit-fill-available;
+}
+
+#games-historic-table tr {
+    padding: 0.25rem 0;
+    background-color: var(--main-color-light);
+    margin: 0.5rem 0;
+    border: none;
+}
+
+#games-historic-table thead tr {
+    background-color: var(--main-color);
+}
+
+#games-historic-table thead::after {
+    content: "";
+    display: block;
+    height: 0rem;
+}
+
+#games-historic-table tr td , #games-historic-table tr th {
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+#games-historic-table tr td:last-child, #games-historic-table tr th:last-child {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+#games-historic-table tr td:first-child, #games-historic-table tr th:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+#games-historic-table tr img.pfp {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+#games-historic-table tr a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+}
+
+#games-historic-table tr a img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.import-game{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7%;
+}
+
+.import-game img{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.border-radius{
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius); ;
+}

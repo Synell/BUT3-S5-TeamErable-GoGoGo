@@ -1,7 +1,6 @@
 from .RuleBase import RuleBase, Board, Tile
 from .RuleFactory import RuleFactory
 from .JapaneseRule import JapaneseRule
-from ..Vector2 import Vector2
 
 class ChineseRule(RuleBase):
     '''Règle chinoise.'''
@@ -9,6 +8,12 @@ class ChineseRule(RuleBase):
     key: str = 'chinese'
 
     def __init__(self, board: Board, komi: float) -> None:
+        '''Initialise une régle chinoise.
+
+        Args:
+            board (Board): Plateau de jeu.
+            komi (float): Komi.
+        '''
         super().__init__(board, komi)
 
     def count_points(self) -> dict[Tile, float]:

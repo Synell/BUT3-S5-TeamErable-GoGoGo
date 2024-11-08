@@ -39,3 +39,11 @@ from .game.game import game, game_code, game_view_player
 from .game.game_struct import GameStruct
 from .game.game_configuration_struct import GameConfigurationStruct
 from .game.game_configuration import create_game_config
+# Import watch_game
+from .watch_game.watch_game import watch_game
+# Import classement
+from .ranking.global_ranking import global_ranking
+from .ranking.tournament_ranking import tournament_ranking
+# Imports carrière
+from .profil.career.career import search_games_historic, career, import_game, export_game, stats, public_career
+from .profil.career.stats_struct import StatsStruct

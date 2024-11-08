@@ -1,0 +1,17 @@
+<div id="container-{{ color }}-player">
+    <div class="row stone-fixed">
+        <div>
+            <img class="pfp" src="/static/icons/profile.png" alt="">
+            <div class="little-stone {{ color }}"></div>
+        </div>
+        <div class="name-container">
+            <p class="name">{{ player }}</p>
+            <p class="timer" id="timer-{{ color }}">{{ timer }}</p>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <div class="row score-group">
+        <div class="little-stone {{ other_color }}"></div>
+        <p class="score {{ color }}">{{ score }}</p>
+    </div>
+</div>

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
-from ....models import CustomUser
+from django.http import HttpResponse, HttpRequest
 from ...decorators import login_required, request_type, RequestType
 from ....http import HttpResponseNotifSuccess
 

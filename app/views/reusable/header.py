@@ -33,11 +33,12 @@ def get_pfp(request: HttpRequest) -> FileResponse:
     try:
         id_user = int(request.GET.get('id'))
         user = CustomUser.objects.get(id = id_user)
+        ret = FileResponse(user.profile_picture)
 
     except:
-        return HttpResponseNotFound()
+        ret = HttpResponseNotFound()
 
-    return FileResponse(user.profile_picture)
+    return ret
 
 
 @login_required

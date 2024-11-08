@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from ...decorators import login_required, request_type, RequestType
-from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
+from django.http import HttpResponse, HttpRequest
 from ....models import CustomUser
 from ....http import HttpResponseNotifError, HttpResponseNotifSuccess
 

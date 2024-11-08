@@ -1,3 +1,7 @@
+/**
+ * Lire l'URL de l'image
+ * @param {*} input 
+ */
 function readURL(input) {
     if (input.files && input.files[0]) {
         var csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
@@ -31,7 +35,7 @@ document.querySelector(".upload-button").addEventListener('click', function() {
 });
 
 
-
+/*
 document.querySelectorAll(".sidebar-link").forEach(function(element) {
     element.addEventListener('click', function(event) {
         var links = document.querySelectorAll(".sidebar-link");
@@ -48,7 +52,7 @@ document.querySelectorAll(".sidebar-link").forEach(function(element) {
         document.querySelector(event.target.getAttribute("activate")).classList.toggle("active");
     });
 });
-
+*/
 
 
 document.querySelector("#change-pwd").addEventListener('submit', function(event) {

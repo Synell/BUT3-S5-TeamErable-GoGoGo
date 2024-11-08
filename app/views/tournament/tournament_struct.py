@@ -6,6 +6,7 @@ from ..game.game_configuration_struct import GameConfigurationStruct
 
 @dataclass
 class TournamentStruct:
+    '''Structure contenant les informations d'un tournoi'''
     name : str
     start_date : str
     end_date : str

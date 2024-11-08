@@ -1,3 +1,8 @@
+/**
+ * Fonction de validation du formulaire
+ * 
+ * @returns {boolean} Renvoie si le formulaire est valide
+ */
 function validateForm() {
     document.querySelector('input[type="submit"]').disabled = true;
 

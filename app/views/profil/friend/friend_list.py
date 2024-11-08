@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from ...decorators import login_required, request_type, RequestType
 from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
-from ....models import CustomUser
 
 @login_required
 @request_type(RequestType.GET, RequestType.POST)

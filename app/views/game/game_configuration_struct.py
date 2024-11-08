@@ -33,7 +33,7 @@ class GameConfigurationStruct:
             time_clock = verify_post(request, 'time-clock', 'Le temps de la partie est vide.'),
             komi = verify_post(request, 'komi', 'Le komi est vide.'),
             handicap = verify_post(request, 'handicap', 'Le handicap est vide.'),
-            ranked = bool(request.POST.get('ranked'))
+            ranked = bool(request.POST.get('game-ranked'))
         )
 
         return ret

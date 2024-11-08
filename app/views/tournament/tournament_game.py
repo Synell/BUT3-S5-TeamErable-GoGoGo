@@ -1,30 +1,67 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from ..game.create_game import construct_game, construct_participate
-from ...models.custom_user import CustomUser
-from ..game.game_configuration_struct import GameConfigurationStruct
-from ..game.game_struct import GameStruct
-from .tournament_struct import TournamentStruct
+from ..game.create_game import construct_participate, construct_game_tournament
+from ...models import CustomUser
+from random import shuffle
+from ...models.tournament import Tournament
+from ...tournament_logic import Tournament as TournamentLogic, Player as TournamentPlayer
+from ...models.game import Game
+from ...storage import TournamentStorage
 
-@login_required
-def create_tournament_game(request: HttpRequest, idplayer1:int, idplayer2: int, tournament: TournamentStruct) -> HttpResponse:
+
+def start_tournament(tournament: Tournament, participants: list[CustomUser]) -> None:
+    '''Fonction permettant de lancer un tournoi
+
+    Args:
+        tournament (TournamentStruct): Le tournoi
+        participants (list[CustomUser]): Les participants
+    '''
+    players = participants.copy()
+    shuffle(players)
+
+    tl = TournamentLogic([TournamentPlayer(p.id) for p in players])
+    f = tournament.get_filename()
+
+    matches = tl.get_current_matches()
+    for match in matches:
+        try:
+            game = create_tournament_game(match.player1.id, match.player2.id, tournament)
+
+            match.id = game.id_game
+
+            TournamentStorage.save_tournament(f, tl)
+            tournament.tournament_status = f
+            tournament.save()
+
+        except:
+            pass
+
+
+def create_tournament_game(id_player1: int, id_player2: int, tournament: Tournament) -> Game:
     '''Fonction permettant de creer une nouvelle partie dans le tournoi
 
     Args:
-        request (HttpRequest): Requête HTTP
         idplayer1 (int): L'id du premier joueur
         idplayer2 (int): L'id du deuxième joueur
         tournament (TournamentStruct): Le tournoi
-
-    Returns:
-        HttpResponse: La requête HTTP
     '''
-    player1 = CustomUser.objects.get(id=idplayer1)
-    player2 = CustomUser.objects.get(id=idplayer2)
+    player1 = CustomUser.objects.get(id=id_player1)
+    player2 = CustomUser.objects.get(id=id_player2)
     game_name = f'{player1.username} vs {player2.username}'
-    game_desc = f'Match du tournois {game_name} oposant {player1.username} et {player2.username}'
-    game_struct = GameStruct(game_name, game_desc, tournament.game_configuration)
-    game = construct_game(game_struct, construct_participate(idplayer1, idplayer2), tournament.id_tournament)
+    game_desc = f'Match du tournois {tournament.name} oposant {player1.username} et {player2.username}'
+    return construct_game_tournament(game_name, game_desc, tournament.game_configuration, construct_participate(id_player1, id_player2), tournament)
 
-    return HttpResponse(f'/game?id={game.id_game}')
+
+def update_tournament_games(tournament: Tournament) -> None:
+    '''Fonction permettant de mettre à jour les matchs du tournoi
+
+    Args:
+        tournament (Tournament): Le tournoi
+    '''
+    tournament_logic = TournamentStorage.load_tournament(tournament.tournament_status.path)
+    matches = tournament_logic.get_current_matches()
+
+    for match in matches:
+        if match.id is None:
+            game = create_tournament_game(match.player1.id, match.player2.id, tournament)
+            match.id = game.id_game
+
+    TournamentStorage.save_tournament(tournament.tournament_status.path, tournament_logic)

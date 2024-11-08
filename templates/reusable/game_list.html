@@ -1,19 +1,40 @@
-<ul class="game-list">
-    {% if not games %}
-    <div class="row">
-        <p>{{ error }}</p>
-    </div>
-    {% endif %}
-    {% for game in games %}
-    <li>
-        <div class="row">
-            <div class="row">
-                <!-- <img src="{{current_user.profile_picture}}" alt="profile picture" class="pfp"> -->
-                <p>{{ game.name }}</p>
-                <p class="description">{{ game.description }}</p>
+{% if not games %}
+<tr>
+    <td colspan="11">{{ error }}</td>
+</tr>
+{% endif %}
+{% for game in games %}
+<tr class="width-fix">
+    <div class="{{ cls }}">
+        <td><p>{{ game.name }}</p></td>
+        <td><p>{{ game.description }}</p></td>
+        <td><p>{{ game.start_date }}</p></td>
+        <td>
+            <div class="pfp-fusion width-fix">
+                <span><img src="get-pfp?id={{game.game_participate.player1.id}}" alt="profile picture" class="pfp"></span>
+                {% if game.game_participate.player2 %}
+                <span><img src="get-pfp?id={{game.game_participate.player2.id}}" alt="profile picture" class="pfp"></span>
+                {% endif %}
             </div>
-            <a class="join-game button" href="/game?id={{ game.id_game }}"><img src="/static/icons/joingame.png" />Rejoindre</a>
-        </div>
-    </li>
-    {% endfor %}
-</ul>
+        </td>
+        <td>
+            {% if game.game_participate.player2 %}
+            <p>{{ game.game_participate.player1.username }} vs {{ game.game_participate.player2.username }}</p>
+            {% else %}
+            <p>{{ game.game_participate.player1.username }} vs ???</p>
+            {% endif %}
+        </td>
+        <td><p>{{ game.game_configuration.map_size }}x{{ game.game_configuration.map_size }}</p></td>
+        <td><p>{{ game.game_configuration.counting_method|translate }}</p></td>
+        <td><p>{{ game.game_configuration.clock_type|translate }}</p></td>
+        <td><p>{{ game.game_configuration.handicap }}</p></td>
+        {% if game.tournament != None %}
+        <td><p>{{ game.tournament.name }}</p></td>
+        {% else %}
+        <td><p>-</p></td>
+        {% endif %}
+        <td><a class="join-game button" href="/game?id={{ game.id_game }}"><img src="/static/icons/joingame.png" />Rejoindre</a></td>
+    </div>
+
+</tr>
+{% endfor %}

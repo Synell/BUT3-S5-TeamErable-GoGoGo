@@ -3,41 +3,64 @@
     box-sizing: border-box;
 }
 
-#game-list ul, #current-game-list ul {
+#games-list, #current-game-list{
     width: 100%;
     margin: 0;
     padding: 0;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0 0.25rem;
 }
 
-#game-list ul li, #current-game-list ul li {
-    justify-content: space-between;
+#games-list tr, #current-game-list tr {
     width: 100%;
     padding: 0.25rem 0;
-    list-style: none;
-}
-
-#game-list ul li > div, #current-game-list ul li > div {
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background-color: var(--main-color-light);
-    border-radius: var(--border-radius);
+    margin: 0.5rem 0;
+    border: none;
 }
 
-#game-list ul li img.pfp, #current-game-list ul li img.pfp {
+#games-list thead tr, #current-game-list thead tr {
+    background-color: var(--main-color);
+}
+
+#games-list thead::after, #current-game-list thead::after {
+    content: "";
+    display: block;
+    height: 0rem;
+    width: 100%;
+}
+
+#games-list tr td , #games-list tr th, #current-game-list tr td, #current-game-list tr th {
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+#games-list tr td:last-child, #games-list tr th:last-child, #current-game-list tr td:last-child, #current-game-list tr th:last-child {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+#games-list tr td:first-child, #games-list tr th:first-child, #current-game-list tr td:first-child, #current-game-list tr th:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+#games-list tr img.pfp, #current-game-list tr img.pfp {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
     margin-right: 1rem;
 }
 
-#game-list ul li a, #current-game-list ul li a {
+#games-list tr a, #current-game-list tr a {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 55%;
 }
 
-#game-list ul li a img, #current-game-list ul li a img {
+#games-list tr a img, #current-game-list tr a img {
     width: 1.5rem;
     height: 1.5rem;
     margin-right: 0.5rem;
@@ -70,4 +93,8 @@ form#join-by-code .form-control {
 
 form#join-by-code input[type="text"] {
     text-align: center;
+}
+
+.width-fix {
+    width: 6rem;
 }

@@ -1,8 +1,6 @@
 from django.test import TestCase, Client
-from django.urls import reverse
 from django.contrib.auth import get_user_model
 from ...models import Statistic
-from ...forms import ResetPasswordForm
 
 class SecurityTest(TestCase):
     '''Classe permettant de tester la vue security'''

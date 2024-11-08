@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
-from ...models.tournament import Tournament
+from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
+from ...models import Tournament
 from datetime import datetime
 from ..decorators import login_required, request_type, RequestType
 from ...http import HttpResponseNotifError
@@ -21,9 +21,9 @@ def edit_tournament(request: HttpRequest, id_tournament: int) -> HttpResponse:
         HttpResponse: Réponse HTTP de redirection vers la page du tournoi modifié ou erreur
     '''
     ret: HttpResponse = HttpResponseNotifError('Erreur lors de la modification du tournois')
-    
+
     if (tournament := can_edit_tournament(id_tournament)) is None:
-        ret = HttpResponse(f'/tournament?id={tournament.id}')
+        ret = HttpResponseRedirect(f'/tournament?id={id_tournament}')
 
     elif request.method == RequestType.POST.value:
         ret = edit_tournament_post(request, tournament)
@@ -81,11 +81,8 @@ def edit_tournament_post(request: HttpRequest, tournament: Tournament) -> HttpRe
         ret = HttpResponse(f'/tournament?id={tournament_edited.id}')
 
     except:
-        import traceback
-        traceback.print_exc()
         return HttpResponseNotifError('Erreur lors de la modification du tournois.')
 
-    
     return ret
 
 def can_edit_tournament(id_tournament: int) -> Tournament:
@@ -101,6 +98,7 @@ def can_edit_tournament(id_tournament: int) -> Tournament:
         tournament = Tournament.objects.get(id = id_tournament)
         if datetime.now().date() >= tournament.start_date:
             tournament = None
+
     except:
         return HttpResponse('/tournament')
     return tournament

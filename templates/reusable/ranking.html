@@ -1,0 +1,34 @@
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th></th>
+                <th>Joueur</th>
+                <th>Rang</th>
+                <th>Elo</th>
+                <th>Parties</th>
+                <th>Victoires</th>
+                <th>Défaites</th>
+                <th>Taux de Victoires</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in top_ranked %}
+            <tr {% if player.user.id is user.id%}id="current" {% endif %}>
+                <td>{{ forloop.counter }}</td>
+                <td><img src="/get-pfp?id={{player.user.id}}" class="pfp"></td>
+                <td>{{ player.user.username }}</td>
+                <td>{{ player.rank }}</td>
+                <td>{{ player.elo }}</td>
+                <td>{{ player.nb_games }}</td>
+                <td>{{ player.nb_victory }}</td>
+                <td>{{ player.nb_defeats  }}</td> 
+                <td>{{ player.taux_victory }}%</td>
+                <td><a class="button" href="/public-career/{{ player.user.id }}/"><img src="/static/icons/voir.png"/>Voir le profil</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

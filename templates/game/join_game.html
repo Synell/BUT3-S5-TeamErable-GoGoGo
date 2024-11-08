@@ -16,7 +16,28 @@
         <div class="container" id="game">
             <div>
                 <h2>Parties en cours</h2>
-                <div id="current-game-list" hx-post="/search-current-game" hx-swap="innerHTML" hx-trigger="load"></div>
+                <div class="current-game-list">
+                    <table id="current-game-list">
+                        <thead>
+                            <tr>
+                                <th>Nom de la partie</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th></th>
+                                <th>Joueurs</th>
+                                <th>Taille du Goban</th>
+                                <th>Méthode de comptage</th>
+                                <th>Type d'horloge</th>
+                                <th>Handicap</th>
+                                <th>Nom du tournoi</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                            <tbody id="current-game-list" hx-post="/search-current-game" hx-swap="innerHTML" hx-trigger="load"></tbody>
+                        </tbody>
+                    </table>
+                </div>
+                
             </div>
             <div class="row space-between">
                 <h2>Rejoindre une partie</h2>
@@ -43,7 +64,28 @@
                 <input type="text" id="search-input" placeholder="Rechercher une partie">
                 <div id="user-datalist"></div>
             </div>
-            <div id="game-list" hx-post="/search-game" hx-swap="innerHTML" hx-trigger="load"></div>
+            <div class="games-list">
+                <table id="games-list">
+                    <thead>
+                        <tr>
+                            <th>Nom de la partie</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th></th>
+                            <th>Joueurs</th>
+                            <th>Taille du Goban</th>
+                            <th>Méthode de comptage</th>
+                            <th>Type d'horloge</th>
+                            <th>Handicap</th>
+                            <th>Nom du tournoi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                        <tbody id="game-list" hx-post="/search-game" hx-swap="innerHTML" hx-trigger="load"></tbody>
+                    </tbody>
+                </table>
+            </div>
+                
         </div>
     </main>
     {% include 'reusable/footer.html' %}

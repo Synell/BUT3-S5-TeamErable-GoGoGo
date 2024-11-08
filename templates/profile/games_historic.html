@@ -1,0 +1,33 @@
+{% for game in games %}
+<tr>
+    <div class="{{ cls }}">
+        <td><p>{{ game.name }}</p></td>
+        <td><p>{{ game.player1 }} vs {{ game.player2 }}</p></td>
+        <td><p>{{ game.score_player1 }} - {{ game.score_player2 }}</p></td>
+        <td><p>{{ game.duration }}</p></td>
+        <td><p>{{ game.map_size }}x{{ game.map_size }}</p></td>
+        <td><p>{{ game.counting_method|translate }}</p></td>
+        <td><p>{{ game.clock_type|translate }}</p></td>
+        <td><p>{{ game.komi }}</p></td>
+        <td><p>{{ game.handicap }}</p></td>
+        {% if game.tournament %}
+            <td><p>{{ game.tournament.name }}</p></td>
+        {% else %}
+            <td><p>-</p></td>
+        {% endif %}
+        <td>
+            <div class="row">
+                <a class="watch-game button" href="/watch-game?id={{ game.id_game_save }}">
+                    <img src="/static/icons/voir.png" />
+                    Regarder
+                </a>
+                <div class="separator"></div>
+                <a id="export-game" class="export-game button" href="/export-game/{{ game.id_game_save }}/" download="exported_data.json">
+                    <img src="/static/icons/export.png" />
+                    Exporter
+                </a>
+            </div>
+        </td>
+    </div>
+</tr>
+{% endfor %}

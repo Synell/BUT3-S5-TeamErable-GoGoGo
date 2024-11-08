@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GoGoGo • Classement</title>
+        <link rel="shortcut icon" type="image/svg" href="{% static 'icons/favicon.svg' %}" >
+        <link rel="stylesheet" href="/static/css/global.css">
+        <link rel="stylesheet" href="/static/css/ranking/ranking.css">
+        <link rel="stylesheet" href="/static/css/signup.css">
+    </head>
+
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    {% include 'reusable/header.html' %}
+    {% include 'reusable/notify.html' %}
+
+    <main>
+        <div class="navbar-select">
+            <div class="navbar-item">
+                <a href="#" activate="#global" class="navbar-link active">Global</a>
+            </div>
+            <div class="navbar-item">
+                <a href="#" activate="#friends" class="navbar-link">Amis</a>
+            </div>
+            <div class="navbar-item">
+                <a href="#" activate="#rank" class="navbar-link">Rang</a>
+            </div>
+        </div>
+        <div class="content">
+            <section id="global" class="active">
+                <h1>Classement global</h1>
+                {% include 'reusable/ranking.html' with top_ranked=top_ranked user=request.user %}
+
+            </section>
+            <section id="friends" class="">
+                <h1>Classement de votre liste d'amis</h1>
+                {% include 'reusable/ranking.html' with top_ranked=friends_ranked user=request.user %}
+            </section>
+            <section id="rank" class="">
+                <h1>Classement de votre rang</h1>
+                {% include 'reusable/ranking.html' with top_ranked=same_ranked user=request.user %}
+                
+            </section>
+        </div>
+    </main>
+    {% include 'reusable/footer.html' %}
+    <script src="/static/js/sidebar-link.js"></script>
+</body>
+</html>

@@ -3,6 +3,9 @@ document.querySelector('.menu-toggle').addEventListener('click', function(){
     this.classList.toggle('is-active');
 });
 
+/**
+ * Fonction pour afficher le menu de profil
+ */
 function pfpMenuToggle() {
     const toggleMenu = document.querySelector(".pfp-menu");
     toggleMenu.classList.toggle("active");

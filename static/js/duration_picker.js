@@ -1,4 +1,4 @@
-// Ce fichier est en anglais car il s'agit d'une librairie externe, informations ci-dessous.
+// Ce fichier est en anglais car il s'agit d'une bibliothèque externe, informations ci-dessous.
 
 /**
  * @preserve

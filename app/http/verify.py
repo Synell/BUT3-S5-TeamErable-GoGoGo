@@ -9,7 +9,10 @@ def verify_post(request: HttpRequest, key : str, message : str) -> str:
         message (str): Le message d'exception
         
     Returns:
-        str: La valeur ou l'exception
+        str: La valeur
+
+    Raises:
+        Exception: message d'exception pris en paramêtre
     '''
     if (value := request.POST.get(key)) is None: 
         raise Exception(message)
@@ -24,7 +27,10 @@ def verify_get(request: HttpRequest, key : str, message : str) -> str:
         message (str): Le message d'exception
 
     Returns:
-        str: La valeur ou l'exception
+        str: La valeur
+
+    Raises:
+        Exception: message d'exception pris en paramêtre
     '''
     if (value := request.GET.get(key)) is None: 
         raise Exception(message)

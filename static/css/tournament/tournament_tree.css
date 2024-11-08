@@ -1,74 +1,139 @@
-#arbre-section {
+#tree-section {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    overflow-x: auto;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
 }
-
-.tournament-tree {
-    gap: 20px;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 3rem;
-}
-
-.column {
+.round {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    position: relative;
+    justify-content: center;
+    width: 200px;
+    list-style: none;
+    padding: 0;
+}
+.round .spacer {
+    flex-grow: 1;
+}
+.round .spacer:first-child,
+.round .spacer:last-child {
+    flex-grow: 0.5;
 }
 
-.tour-label {
-    font-weight: bold;
-    margin-bottom: 10px;
+.round .game-spacer {
+    flex-grow: 1;
 }
 
-.match {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 5px 0;
-    position: relative;
+li.game {
+    padding-left: 20px;
+    height: 1rem;
 }
 
-.team {
+li.game.winner {
+    background-color: #a5f6a5;
+}
+
+li.game.loser {
+    background-color: #ff7070;
+}
+
+li.game span {
+    float: right;
+    margin-right: 5px;
+}
+
+li.game-top {
+    border-bottom: 1px solid #aaa;
     padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background-color: var(--main-color-light);
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+    /* margin-right: 1rem;
+    margin-left: 1rem; */
+}
+
+/* li.game-top::before {
+    content: "";
+    display: block;
+    clear: both;
+    width: 1rem;
+    border-bottom: 0.05rem solid #aaa;
+    transform: translate(-2rem, 1.5rem);
+    float: left;
+}
+
+li.game-top::after {
+    content: "";
+    display: block;
+    clear: both;
+    width: 1rem;
+    border-bottom: 0.05rem solid #aaa;
+    transform: translate(2rem, 0.375rem);
+    float: right;
+} */
+
+li.game-top.no-background {
+    background-color: lightgrey;
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+}
+
+li.game-top.last {
+    margin-right: 0;
+}
+
+li.game-top.last::after {
+    display: none;
+}
+
+li.game-spacer { 
+    border-right: 1px solid #aaa;
+    min-height: 40px;
+}
+
+li.game-bottom { 
+    border-top: 1px solid #aaa;
+    padding: 0.5rem 1rem;
     background-color: var(--main-color-light);
     border-bottom-right-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
-    position: relative;
+    border-bottom-left-radius: var(--border-radius);
+    /* margin-right: 1rem;
+    margin-left: 1rem; */
 }
 
-.winner {
-    background-color: #7ac95b;
-}
-
-/* Style pour les lignes reliant les équipes */
-.team::before {
+/* li.game-bottom::before {
     content: "";
-    position: absolute;
-    width: 2px; 
-    height: 100%;
-    background-color: #000;
-    top: 50%;
-    left: -2px;
-    transform: translateY(-50%);
-    z-index: -1; 
+    display: block;
+    clear: both;
+    width: 1rem;
+    border-top: 0.05rem solid #aaa;
+    transform: translate(-2rem, -0.55rem);
+    float: left;
 }
 
-/* Style pour les lignes indiquant le passage au tour suivant */
-.match::after {
+li.game-bottom::after {
     content: "";
-    position: absolute;
-    width: 20px; 
-    height: 2px;
-    background-color: #000;
-    top: 50%;
-    left: 100%;
-    transform: translateY(-50%);
+    display: block;
+    clear: both;
+    width: 1rem;
+    border-top: 0.05rem solid #aaa;
+    transform: translate(2rem, -1.7rem);
+    float: right;
+} */
+
+li.game-bottom.no-background {
+    background-color: lightgrey;
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
 }
+
+/* #tree-section ul:first-child li.game-top, #tree-section ul:first-child li.game-bottom {
+    margin-left: 0;
+}
+
+#tree-section ul:first-child li.game-top::before, #tree-section ul:first-child li.game-bottom::before {
+    display: none;
+} */

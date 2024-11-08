@@ -2,7 +2,7 @@ from .TimerBase import TimerBase
 from ...utils import Singleton
 
 class TimerFactory(metaclass = Singleton):
-    '''Fabrique de timer.'''
+    '''Fabrique de timer. Serve de singleton.'''
 
     def __init__(self) -> None:
         '''Initialise la fabrique de timer.'''

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoGoGo • Partie</title>
+    <link rel="shortcut icon" type="image/svg" href="{% static 'icons/favicon.svg' %}" >
+    <link rel="stylesheet" href="/static/css/global.css">
+    <link rel="stylesheet" href="/static/css/game/game.css">
+    <link rel="stylesheet" href="/static/css/watch_game/watch_game.css">
+</head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    {% include 'reusable/header.html' %}
+    {% include 'reusable/notify.html' %}
+
+    <main>
+        {% csrf_token %}
+        <input type="text" id="game-save-id" value="{{ id }}" hidden>
+        <input type="text" id="color" value="{{ color }}" hidden>
+
+        <div class="separator-2"></div>
+
+        <div class="flex flex-column mobile-flex-reverse">
+            <div class="flex flex-row row mobile-flex-direction">
+                {{ player1_html | safe }}
+
+                <div class="mobile-separator"></div>
+    
+                {{ player2_html | safe }}
+            </div>
+    
+            <div class="separator"></div>
+            <div class="mobile-separator"></div>
+    
+            <div>
+                <div class="overflow-auto-x margin-bottom">
+                    <div class="width-max-content margin-auto-x">
+                        <table class="board {{ can_play }}" cellspacing="0">
+                            {% for row in board %}
+                            <tr>
+                                {% for cell in row %}
+                                <td class="cell">
+                                    <div class="inside">
+                                        <div class="stone {{ cell.tile }}" x="{{ cell.x }}" y="{{ cell.y }}"></div>
+                                    </div>
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+
+                <div class="center row">
+                    <div class="center transition {{ action_buttons_class }}" id="action-buttons">
+                        <div class="row mobile-flex-direction width-fit-content">
+                            <input id="duration-slider" type="range" min="0" max="{{ duration }}" value="0">
+                            <div class="separator"></div>
+                            <p class="no-margin margin-side center"><span id="duration-time">00:00:00</span>&nbsp;/&nbsp;{{ duration_formatted }}</p>
+                        </div>
+                    </div>
+                    <div class="margin-side row">
+                        <button id="play"><img src="/static/icons/play.png" alt="jouer"></button>
+                        <button id="pause" class="hidden"><img src="/static/icons/pause.png" alt="pause"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+    </main>
+
+    <script src="/static/js/watch_game/watch_game.js"></script>
+    <script src="/static/js/global.js"></script>
+    <script src="/static/js/watch_game/timer.js"></script>
+</body>
+</html>

@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from ...decorators import login_required, request_type, RequestType
-from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
+from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate, login
 from ....http import HttpResponseNotifError, HttpResponseNotifSuccess
@@ -16,7 +15,6 @@ def _set_password(old_pwd, new_pwd, request) -> HttpResponse:
     Returns:
         HttpResponse: Réponse HTTP de la modification du mot de passe de l'utilisateur
     '''
-
     validate_password(new_pwd)
     ret = HttpResponseNotifError('L\'ancien mot de passe est incorrect.')
     if request.user.check_password(old_pwd):

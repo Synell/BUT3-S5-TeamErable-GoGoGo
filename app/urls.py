@@ -50,5 +50,22 @@ urlpatterns = [
     path("game-code", views.game_code, name="game_code"),
     path("game-view-player", views.game_view_player, name="game_view_player"),
 
+    # Regarder une partie
+    path("watch-game", views.watch_game, name="watch_game"),
 
+    #Carrière
+    path("search-games-historic/<int:id_user>/", views.search_games_historic, name="search_games_historic"),
+    path("career", views.career, name="career"),
+    path("stats", views.stats, name="stats"),
+    path("import-game", views.import_game, name="import_game"),
+    path("export-game/<int:id_game>/", views.export_game, name="export_game"),
+    path("career/<int:id_user>/", views.career, name="public_career"),
+    
+    #Public Carrière
+    path("public-career/<int:id_user>/", views.public_career, name="public_career"),
+
+    #Classement
+    path("classement-global", views.global_ranking, name="classement_global"),
+    path("classement-tournament/<id_tournament>/", views.tournament_ranking, name="classement_tournament"),
+    
 ]

@@ -1,6 +1,6 @@
 from django.db import models
 from .game_participate import GameParticipate
-from .tournament import Tournament
+from . import Tournament
 from .game_configuration import GameConfiguration
 
 class Game(models.Model):

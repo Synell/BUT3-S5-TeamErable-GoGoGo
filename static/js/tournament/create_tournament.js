@@ -19,7 +19,9 @@ document.body.addEventListener("htmx:afterRequest", function(event) {
 // Récupérer la case à cocher et le div
 var handicap = document.getElementById('handicap-form');
 
-// Ajouter un écouteur d'événement pour la case à cocher
+/**
+ * Ajouter un routeur d'événement pour la case à cocher
+ */
 function toggleHandicap() {
 
     // Inverser l'état actif du switch button
@@ -27,6 +29,25 @@ function toggleHandicap() {
 
     // Si le switch button est activé, afficher le div, sinon le masquer
     handicap.hidden = !switchbutton.checked;
-
-
 };
+
+document.querySelector('#map-size').addEventListener('change', function() {
+    
+    let handicap = document.getElementById('handicap');
+
+    switch (document.querySelector('#map-size').value) {
+        case '9':
+            handicap.max = 4;
+            break;
+        case '13':
+            handicap.max = 5;
+            break;
+        case '19':
+            handicap.max = 9;
+            break;
+    }
+
+    if (parseInt(handicap.value) > parseInt(handicap.max)) {
+        handicap.value = handicap.max;
+    }
+});

@@ -4,12 +4,21 @@ table.board {
     border-spacing: 0;
 }
 
+.board{
+    background-image: url('../../textures/goban.png') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.margin-bottom{
+    margin-bottom: 1em;
+}
+
 table.board > tbody > tr > td {
     width: 5rem;
     height: 5rem;
     text-align: center;
     vertical-align: middle;
-    background-color: #fff;
     padding: 0;
 }
 
@@ -188,6 +197,10 @@ table.board > tbody > tr:last-child > td::after {
     height: 100%;
 }
 
+.band div.height-auto {
+    height: auto;
+}
+
 .band > div > div {
     width: 100%;
     min-height: 10rem;
@@ -210,5 +223,9 @@ table.board > tbody > tr:last-child > td::after {
 
 p#pause-count {
     margin: auto;
+    margin-left: 0.5rem;
+}
+
+p#start-count {
     margin-left: 0.5rem;
 }

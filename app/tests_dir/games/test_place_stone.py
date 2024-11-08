@@ -3,11 +3,11 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from channels.testing import WebsocketCommunicator
 from ...models import Statistic, GameConfiguration, GameParticipate, Game
-from ...logic import Tile, Board
+from ...logic import Board
 from ...logic.rules import RuleFactory
 from ...logic.timer import TimerFactory
 from ...channels import GameJoinAndLeave
-from datetime import timedelta, datetime
+from datetime import timedelta
 import json
 
 class PlaceStoneTestCase(TestCase):

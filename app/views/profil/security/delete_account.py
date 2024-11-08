@@ -1,11 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.password_validation import validate_password
-from ....models import CustomUser
+from django.http import HttpResponse, HttpRequest
 from ...decorators import login_required, request_type, RequestType
 from ....http import HttpResponseNotifError, HttpResponseNotifSuccess
-import os
 
 @login_required
 @request_type(RequestType.POST)

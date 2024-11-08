@@ -1,10 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, HttpResponseBadRequest
-from ...models.tournament import Tournament
-from ...models.game_configuration import GameConfiguration
-from ...models.custom_user import CustomUser
+from django.http import HttpResponse, HttpRequest, HttpResponseBadRequest
+from ...models import CustomUser, Tournament
 from datetime import datetime
-import random, string
 from ..decorators import login_required, request_type, RequestType
 from ...http import HttpResponseNotifError
 from ..code_manager import CodeManager

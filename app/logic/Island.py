@@ -18,10 +18,12 @@ class Island:
 
     @property
     def tile(self) -> Tile:
+        '''Renvoie la tuile de l'île.'''
         return self._tile
     
     @property
     def coords(self) -> tuple[Vector2]:
+        '''Renvoie les coordonnées des tuiles.'''
         return self._coords
 
 
@@ -49,9 +51,11 @@ class Island:
 
 
     def __str__(self) -> str:
+        '''Surcharge de str.'''
         return f'Island({self._tile}, {self._coords})'
 
     def __repr__(self) -> str:
+        '''Surcharge de repr.'''
         return str(self)
 
 
@@ -83,3 +87,15 @@ class Island:
             bool: True si l'île est contenue, False sinon.
         '''
         return set(island._coords).issubset(set(self._coords))
+
+
+    def overlaps(self, island: 'Island') -> bool:
+        '''Vérifie si l'île chevauche une autre île.
+
+        Args:
+            island (Island): Île à vérifier.
+
+        Returns:
+            bool: True si l'île chevauche, False sinon.
+        '''
+        return set(island._coords).intersection(set(self._coords)) != set()

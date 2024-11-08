@@ -1,0 +1,38 @@
+.career-container{
+    text-align: center;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    margin-top: 3rem;
+}
+
+.upper-section {
+    display: flex;
+    margin-top: 1.5em;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    justify-content: center;
+}
+
+.career-header-section {
+    display: flex;
+    flex: 0 0 calc(80% - 10px);
+    justify-content:center;
+    flex-direction: column;
+}
+
+.career-header-section img {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.games-list{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    width: auto;
+}
+
+.stats-public-career{
+    width: auto;
+}
