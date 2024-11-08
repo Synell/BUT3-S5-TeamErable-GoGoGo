@@ -35,14 +35,8 @@ Ces documents sont disponibles dans le dossier `docs/` du projet et contiennent 
 
 ## Contributeurs
 
-***REMOVED*** ***REMOVED*** (***REMOVED***Gdr), ***REMOVED*** ***REMOVED*** (HuGo***REMOVED***), ***REMOVED*** ***REMOVED*** (***REMOVED******REMOVED***), ***REMOVED*** ***REMOVED*** (Synel)
-
-Tous les contributeurs sont liés à une adresse IUT, sont identifiés explicitement ci-dessus, et sont donc identifiables par les administrateurs du projet.
-
-**Dans la logique établie avec Mme ***REMOVED*** lors des retours de l'alpha par la promo entière, aucun retrait de points sur les pseudos n'est censé être effectué pour ce projet, que ce soit pour un membre ou pour l'équipe entière.**
-
 [//]: contributor-faces
 
-<a href="https://github.com/***REMOVED***Gdr"><img src="https://avatars.githubusercontent.com/u/104968811?v=4" title="***REMOVED***Gdr" width="80" height="80"></a>   <a href="https://github.com/HuGo***REMOVED***"><img src="https://avatars.githubusercontent.com/u/104894581?v=4" title="HuGo***REMOVED***" width="80" height="80"></a>   <a href="https://github.com/***REMOVED******REMOVED***"><img src="https://avatars.githubusercontent.com/u/104895273?v=4" title="***REMOVED******REMOVED***" width="80" height="80"></a>   <a href="https://github.com/Synell"><img src="https://avatars.githubusercontent.com/u/70210528?v=4" title="Synel" width="80" height="80"></a>
+<a href="https://github.com/JohnGdr"><img src="https://avatars.githubusercontent.com/u/104968811?v=4" title="JohnGdr" width="80" height="80"></a>   <a href="https://github.com/HuGoMrula"><img src="https://avatars.githubusercontent.com/u/104894581?v=4" title="HuGoMrula" width="80" height="80"></a>   <a href="https://github.com/MatthieuThivard"><img src="https://avatars.githubusercontent.com/u/104895273?v=4" title="MatthieuThivard" width="80" height="80"></a>   <a href="https://github.com/Synell"><img src="https://avatars.githubusercontent.com/u/70210528?v=4" title="Synel" width="80" height="80"></a>
 
 [//]: contributor-faces
