@@ -37,6 +37,6 @@ Ces documents sont disponibles dans le dossier `docs/` du projet et contiennent 
 
 [//]: contributor-faces
 
-<a href="https://github.com/JohnGdr"><img src="https://avatars.githubusercontent.com/u/104968811?v=4" title="JohnGdr" width="80" height="80"></a>   <a href="https://github.com/HuGoMrula"><img src="https://avatars.githubusercontent.com/u/104894581?v=4" title="HuGoMrula" width="80" height="80"></a>   <a href="https://github.com/MatthieuThivard"><img src="https://avatars.githubusercontent.com/u/104895273?v=4" title="MatthieuThivard" width="80" height="80"></a>   <a href="https://github.com/Synell"><img src="https://avatars.githubusercontent.com/u/70210528?v=4" title="Synel" width="80" height="80"></a>
+<a href="https://github.com/JohnGdr"><img src="https://avatars.githubusercontent.com/u/104968811?v=4" title="JohnGdr" width="80" height="80"></a>   <a href="https://github.com/HugoMrula"><img src="https://avatars.githubusercontent.com/u/104894581?v=4" title="HugoMrula" width="80" height="80"></a>   <a href="https://github.com/MatthieuThivard"><img src="https://avatars.githubusercontent.com/u/104895273?v=4" title="MatthieuThivard" width="80" height="80"></a>   <a href="https://github.com/Synell"><img src="https://avatars.githubusercontent.com/u/70210528?v=4" title="Synel" width="80" height="80"></a>
 
 [//]: contributor-faces
